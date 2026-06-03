@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastro de Motoristas Parceiros — Kangu Mercado Envios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --y:#F5C518;--y2:#E6B800;--dk:#0F0F0F;--dk2:#1A1A1A;--dk3:#2A2A2A;
+  --wh:#FFFFFF;--bg:#F7F6F2;--line:#E0DED8;--mu:#8A8880;
+  --gr:#16A34A;--re:#DC2626;--am:#D97706;
+  --radius:12px;--font:'Sora',sans-serif;--mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--dk);min-height:100vh}
+
+/* HEADER */
+.header{background:var(--dk);padding:0;position:relative;overflow:hidden}
+.header-inner{max-width:680px;margin:0 auto;padding:40px 24px 36px;position:relative;z-index:1}
+.header::before{content:'';position:absolute;right:-80px;top:-80px;width:320px;height:320px;border-radius:50%;background:rgba(245,197,24,.08);pointer-events:none}
+.header::after{content:'';position:absolute;left:-40px;bottom:-60px;width:200px;height:200px;border-radius:50%;background:rgba(245,197,24,.05);pointer-events:none}
+.logo-row{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.logo-badge{background:var(--y);color:var(--dk);font-family:var(--mono);font-size:11px;font-weight:500;padding:4px 12px;border-radius:4px;letter-spacing:.08em;text-transform:uppercase}
+.header-tag{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.4);letter-spacing:.12em;text-transform:uppercase}
+.header-title{font-size:clamp(22px,5vw,28px);font-weight:700;color:var(--wh);line-height:1.2;margin-bottom:8px}
+.header-title span{color:var(--y)}
+.header-sub{font-size:13px;color:rgba(255,255,255,.45);line-height:1.6}
+
+/* PROGRESS */
+.progress-wrap{background:var(--dk2);padding:0}
+.progress-inner{max-width:680px;margin:0 auto;padding:16px 24px}
+.progress-bar-bg{height:3px;background:rgba(255,255,255,.1);border-radius:2px;margin-bottom:10px}
+.progress-bar-fill{height:100%;background:var(--y);border-radius:2px;transition:width .4s ease}
+.progress-labels{display:flex;justify-content:space-between}
+.p-label{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.06em;text-transform:uppercase;transition:color .3s}
+.p-label.active{color:var(--y)}
+
+/* MAIN */
+.main{max-width:680px;margin:0 auto;padding:32px 24px 60px}
+
+/* SECTIONS */
+.section{display:none;animation:fadeIn .3s ease}
+.section.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.section-header{margin-bottom:24px}
+.section-pill{display:inline-flex;align-items:center;gap:6px;background:var(--dk);color:var(--y);font-family:var(--mono);font-size:10px;font-weight:500;padding:4px 12px;border-radius:4px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.section-title{font-size:20px;font-weight:700;color:var(--dk);margin-bottom:4px}
+.section-desc{font-size:13px;color:var(--mu);line-height:1.55}
+
+/* FIELDS */
+.field{margin-bottom:20px}
+.field-label{display:block;font-size:13px;font-weight:600;color:var(--dk);margin-bottom:8px}
+.field-label .req{color:var(--re);margin-left:2px}
+.field-hint{font-size:11px;color:var(--mu);margin-top:5px;line-height:1.5}
+input[type=text],input[type=tel],input[type=email],input[type=date],select,textarea{
+  width:100%;padding:12px 14px;border:1.5px solid var(--line);border-radius:var(--radius);
+  font-family:var(--font);font-size:14px;color:var(--dk);background:var(--wh);
+  transition:border-color .2s,box-shadow .2s;outline:none;-webkit-appearance:none;appearance:none
+}
+input:focus,select:focus,textarea:focus{border-color:var(--y);box-shadow:0 0 0 3px rgba(245,197,24,.15)}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238A8880' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+textarea{resize:vertical;min-height:90px;line-height:1.6}
+.field-error input,.field-error select,.field-error textarea{border-color:var(--re)}
+.field-error .err-msg{display:block}
+.err-msg{display:none;font-size:11px;color:var(--re);margin-top:5px;font-weight:500}
+
+/* RADIO / CHECK */
+.options{display:flex;flex-direction:column;gap:8px}
+.opt-item{display:flex;align-items:center;gap:10px;padding:12px 14px;border:1.5px solid var(--line);border-radius:var(--radius);cursor:pointer;transition:all .2s;background:var(--wh);user-select:none}
+.opt-item:hover{border-color:var(--y);background:#FFFDF0}
+.opt-item.selected{border-color:var(--y);background:#FFFDF0}
+.opt-item.selected .opt-dot{background:var(--y);border-color:var(--y)}
+.opt-item.selected .opt-check{background:var(--y);border-color:var(--y)}
+.opt-dot{width:16px;height:16px;border-radius:50%;border:2px solid var(--line);flex-shrink:0;transition:all .2s;position:relative}
+.opt-dot::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:6px;height:6px;border-radius:50%;background:var(--dk);opacity:0;transition:opacity .2s}
+.opt-item.selected .opt-dot::after{opacity:1}
+.opt-check{width:16px;height:16px;border-radius:4px;border:2px solid var(--line);flex-shrink:0;transition:all .2s;position:relative}
+.opt-check::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:10px;color:var(--dk);opacity:0;transition:opacity .2s;font-weight:700}
+.opt-item.selected .opt-check::after{opacity:1}
+.opt-label{font-size:13px;color:var(--dk);flex:1;line-height:1.4}
+.opt-item input{display:none}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+/* NAVIGATION */
+.nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:28px;padding-top:20px;border-top:1px solid var(--line)}
+.btn-back{padding:11px 20px;border:1.5px solid var(--line);border-radius:var(--radius);background:transparent;font-family:var(--font);font-size:13px;font-weight:600;color:var(--mu);cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px}
+.btn-back:hover{border-color:var(--dk);color:var(--dk)}
+.btn-next{padding:12px 28px;border:none;border-radius:var(--radius);background:var(--y);font-family:var(--font);font-size:13px;font-weight:700;color:var(--dk);cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px}
+.btn-next:hover{background:var(--y2);transform:translateY(-1px);box-shadow:0 4px 12px rgba(245,197,24,.4)}
+.btn-next:active{transform:translateY(0)}
+.btn-submit{padding:14px 36px;border:none;border-radius:var(--radius);background:var(--gr);font-family:var(--font);font-size:14px;font-weight:700;color:var(--wh);cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px;width:100%;justify-content:center;margin-top:20px}
+.btn-submit:hover{background:#15803d;transform:translateY(-1px);box-shadow:0 4px 16px rgba(22,163,74,.3)}
+
+/* REVIEW */
+.review-section{margin-bottom:16px}
+.review-section-title{font-size:11px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.08em;font-family:var(--mono);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.review-row{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px solid #F0EEE8;gap:12px}
+.review-row:last-child{border-bottom:none}
+.review-key{font-size:12px;color:var(--mu);flex-shrink:0}
+.review-val{font-size:12px;font-weight:600;color:var(--dk);text-align:right}
+.confirm-box{background:var(--dk);border-radius:var(--radius);padding:16px 18px;margin-bottom:20px;display:flex;align-items:flex-start;gap:12px}
+.confirm-box input{width:18px;height:18px;accent-color:var(--y);flex-shrink:0;cursor:pointer;margin-top:2px}
+.confirm-label{font-size:13px;color:rgba(255,255,255,.7);line-height:1.55;cursor:pointer}
+.confirm-label strong{color:var(--wh)}
+
+/* SUCCESS */
+.success{display:none;text-align:center;padding:48px 20px}
+.success-icon{width:72px;height:72px;border-radius:50%;background:var(--y);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:32px}
+.success-title{font-size:24px;font-weight:700;color:var(--dk);margin-bottom:10px}
+.success-sub{font-size:14px;color:var(--mu);line-height:1.65;max-width:380px;margin:0 auto}
+.success-name{color:var(--dk);font-weight:700}
+
+/* REJECTION */
+.rejection{display:none;text-align:center;padding:48px 20px}
+.rejection-icon{width:64px;height:64px;border-radius:50%;background:#F1F0EC;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:28px;border:2px solid var(--line)}
+.rejection-title{font-size:20px;font-weight:700;color:var(--dk);margin-bottom:8px}
+.rejection-sub{font-size:13px;color:var(--mu);line-height:1.6;max-width:360px;margin:0 auto}
+.rejection-future{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;margin:20px auto 0;max-width:360px;font-size:12px;color:var(--mu);line-height:1.6}
+
+/* STEP COUNTER */
+.step-count{font-family:var(--mono);font-size:11px;color:var(--mu);margin-bottom:4px}
+
+@media(max-width:480px){
+  .two-col{grid-template-columns:1fr}
+  .header-inner{padding:28px 16px 24px}
+  .main{padding:20px 16px 50px}
+  .progress-inner{padding:14px 16px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="logo-row">
+      <span class="logo-badge">Kangu</span>
+      <span class="header-tag">Mercado Envios · Motoristas Parceiros</span>
+    </div>
+    <h1 class="header-title">Cadastro de<br><span>Motoristas Parceiros</span></h1>
+    <p class="header-sub">Preencha com atenção · Análise em até 48h úteis · Retorno pelo WhatsApp</p>
+  </div>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="prog-fill" style="width:20%"></div></div>
+    <div class="progress-labels">
+      <span class="p-label active" id="pl-1">Dados</span>
+      <span class="p-label" id="pl-2">Veículo</span>
+      <span class="p-label" id="pl-3">Docs</span>
+      <span class="p-label" id="pl-4">Experiência</span>
+      <span class="p-label" id="pl-5">Revisão</span>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- SEÇÃO 1 — DADOS PESSOAIS -->
+  <div class="section active" id="sec-1">
+    <div class="section-header">
+      <div class="section-pill">01 / 05</div>
+      <h2 class="section-title">Dados pessoais</h2>
+      <p class="section-desc">Informações básicas para contato e identificação.</p>
+    </div>
+    <div class="field" id="f-nome">
+      <label class="field-label">Nome completo <span class="req">*</span></label>
+      <input type="text" id="nome" placeholder="Seu nome completo">
+      <span class="err-msg">Por favor informe seu nome completo.</span>
+    </div>
+    <div class="two-col">
+      <div class="field" id="f-tel">
+        <label class="field-label">WhatsApp <span class="req">*</span></label>
+        <input type="tel" id="tel" placeholder="(19) 99999-9999" maxlength="15">
+        <span class="err-msg">Informe seu WhatsApp com DDD.</span>
+      </div>
+      <div class="field" id="f-cpf">
+        <label class="field-label">CPF <span class="req">*</span></label>
+        <input type="text" id="cpf" placeholder="000.000.000-00" maxlength="14">
+        <span class="err-msg">Informe um CPF válido.</span>
+      </div>
+    </div>
+    <div class="field" id="f-cidade">
+      <label class="field-label">Cidade onde reside <span class="req">*</span></label>
+      <div class="options" id="opts-cidade">
+        <div class="opt-item" onclick="selOpt(this,'cidade','Piracicaba')"><span class="opt-dot"></span><span class="opt-label">Piracicaba</span><input type="radio" name="cidade" value="Piracicaba"></div>
+        <div class="opt-item" onclick="selOpt(this,'cidade','Rio das Pedras')"><span class="opt-dot"></span><span class="opt-label">Rio das Pedras</span><input type="radio" name="cidade" value="Rio das Pedras"></div>
+        <div class="opt-item" onclick="selOpt(this,'cidade','Saltinho')"><span class="opt-dot"></span><span class="opt-label">Saltinho</span><input type="radio" name="cidade" value="Saltinho"></div>
+        <div class="opt-item" onclick="selOpt(this,'cidade','Cerquilho')"><span class="opt-dot"></span><span class="opt-label">Cerquilho</span><input type="radio" name="cidade" value="Cerquilho"></div>
+        <div class="opt-item" onclick="selOpt(this,'cidade','Tietê')"><span class="opt-dot"></span><span class="opt-label">Tietê</span><input type="radio" name="cidade" value="Tietê"></div>
+        <div class="opt-item" onclick="selOpt(this,'cidade','Laranjal Paulista')"><span class="opt-dot"></span><span class="opt-label">Laranjal Paulista</span><input type="radio" name="cidade" value="Laranjal Paulista"></div>
+        <div class="opt-item" onclick="selOpt(this,'cidade','Laras')"><span class="opt-dot"></span><span class="opt-label">Laras</span><input type="radio" name="cidade" value="Laras"></div>
+        <div class="opt-item" onclick="selOpt(this,'cidade','_fora')"><span class="opt-dot"></span><span class="opt-label">Não moro nessas cidades</span><input type="radio" name="cidade" value="_fora"></div>
+      </div>
+      <span class="err-msg" id="err-cidade">Selecione sua cidade.</span>
+    </div>
+    <div class="field">
+      <label class="field-label">E-mail <span style="color:var(--mu);font-weight:400">(opcional)</span></label>
+      <input type="email" id="email" placeholder="seu@email.com">
+    </div>
+    <div class="nav-row">
+      <span></span>
+      <button class="btn-next" onclick="next(1)">Próximo →</button>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 2 — VEÍCULO -->
+  <div class="section" id="sec-2">
+    <div class="section-header">
+      <div class="section-pill">02 / 05</div>
+      <h2 class="section-title">Informações do veículo</h2>
+      <p class="section-desc">Detalhes sobre o veículo utilizado para as entregas.</p>
+    </div>
+    <div class="field" id="f-modal">
+      <label class="field-label">Tipo do veículo <span class="req">*</span></label>
+      <div class="options">
+        <div class="opt-item" onclick="selOpt(this,'modal','Utilitário')"><span class="opt-dot"></span><span class="opt-label">Utilitário — Fiorino, Saveiro, Montana, Strada ou similar</span><input type="radio" name="modal" value="Utilitário"></div>
+        <div class="opt-item" onclick="selOpt(this,'modal','Van')"><span class="opt-dot"></span><span class="opt-label">Van — Sprinter, Master, Transit ou similar</span><input type="radio" name="modal" value="Van"></div>
+        <div class="opt-item" onclick="selOpt(this,'modal','VUC')"><span class="opt-dot"></span><span class="opt-label">VUC — Veículo Urbano de Carga</span><input type="radio" name="modal" value="VUC"></div>
+        <div class="opt-item" onclick="selOpt(this,'modal','_outro')"><span class="opt-dot"></span><span class="opt-label">Outro tipo de veículo</span><input type="radio" name="modal" value="_outro"></div>
+      </div>
+      <span class="err-msg" id="err-modal">Selecione o tipo de veículo.</span>
+    </div>
+    <div class="two-col">
+      <div class="field" id="f-marca">
+        <label class="field-label">Marca e modelo <span class="req">*</span></label>
+        <input type="text" id="marca" placeholder="Ex: Fiat Fiorino 1.4">
+        <span class="err-msg">Informe marca e modelo.</span>
+      </div>
+      <div class="field" id="f-ano">
+        <label class="field-label">Ano <span class="req">*</span></label>
+        <select id="ano">
+          <option value="">Selecione</option>
+          <option>2025</option><option>2024</option><option>2023</option><option>2022</option>
+          <option>2021</option><option>2020</option><option>2019</option><option>2018</option>
+          <option>2017</option><option>2016</option><option>2015</option><option>2014</option>
+          <option>2013</option><option>2012</option><option>2011</option>
+          <option value="_antigo">2010 ou anterior</option>
+        </select>
+        <span class="err-msg" id="err-ano">Selecione o ano.</span>
+      </div>
+    </div>
+    <div class="field" id="f-placa">
+      <label class="field-label">Placa do veículo <span class="req">*</span></label>
+      <input type="text" id="placa" placeholder="ABC-1234 ou ABC1D23" maxlength="8">
+      <span class="err-msg">Informe a placa do veículo.</span>
+    </div>
+    <div class="field" id="f-placa-verm">
+      <label class="field-label">O veículo possui placa vermelha (uso comercial)? <span class="req">*</span></label>
+      <div class="options">
+        <div class="opt-item" onclick="selOpt(this,'placa_verm','sim')"><span class="opt-dot"></span><span class="opt-label">Sim, placa vermelha ✅</span><input type="radio" name="placa_verm" value="sim"></div>
+        <div class="opt-item" onclick="selOpt(this,'placa_verm','_nao')"><span class="opt-dot"></span><span class="opt-label">Não, placa comum</span><input type="radio" name="placa_verm" value="_nao"></div>
+      </div>
+      <span class="err-msg" id="err-placa-verm">Selecione uma opção.</span>
+    </div>
+    <div class="field" id="f-capota">
+      <label class="field-label">O veículo possui capota de fibra? <span class="req">*</span></label>
+      <div class="options">
+        <div class="opt-item" onclick="selOpt(this,'capota','sim')"><span class="opt-dot"></span><span class="opt-label">Sim ✅</span><input type="radio" name="capota" value="sim"></div>
+        <div class="opt-item" onclick="selOpt(this,'capota','instalar')"><span class="opt-dot"></span><span class="opt-label">Não, mas pretendo instalar</span><input type="radio" name="capota" value="instalar"></div>
+        <div class="opt-item" onclick="selOpt(this,'capota','_nao')"><span class="opt-dot"></span><span class="opt-label">Não tenho</span><input type="radio" name="capota" value="_nao"></div>
+      </div>
+      <span class="err-msg" id="err-capota">Selecione uma opção.</span>
+    </div>
+    <div class="nav-row">
+      <button class="btn-back" onclick="back(2)">← Voltar</button>
+      <button class="btn-next" onclick="next(2)">Próximo →</button>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 3 — DOCUMENTAÇÃO -->
+  <div class="section" id="sec-3">
+    <div class="section-header">
+      <div class="section-pill">03 / 05</div>
+      <h2 class="section-title">Documentação</h2>
+      <p class="section-desc">Verificação dos documentos obrigatórios para a operação.</p>
+    </div>
+    <div class="field" id="f-ear">
+      <label class="field-label">Sua CNH possui EAR (Exerce Atividade Remunerada)? <span class="req">*</span></label>
+      <p class="field-hint" style="margin-bottom:8px">Verifique na frente da sua carteira de habilitação — deve aparecer "EAR" no campo de observações.</p>
+      <div class="options">
+        <div class="opt-item" onclick="selOpt(this,'ear','sim')"><span class="opt-dot"></span><span class="opt-label">Sim, minha CNH tem EAR ✅</span><input type="radio" name="ear" value="sim"></div>
+        <div class="opt-item" onclick="selOpt(this,'ear','nsei')"><span class="opt-dot"></span><span class="opt-label">Não sei verificar</span><input type="radio" name="ear" value="nsei"></div>
+        <div class="opt-item" onclick="selOpt(this,'ear','_nao')"><span class="opt-dot"></span><span class="opt-label">Não tenho EAR</span><input type="radio" name="ear" value="_nao"></div>
+      </div>
+      <span class="err-msg" id="err-ear">Selecione uma opção.</span>
+    </div>
+    <div class="field" id="f-cnh-val">
+      <label class="field-label">Validade da CNH <span class="req">*</span></label>
+      <input type="date" id="cnh_val">
+      <span class="err-msg">Informe a validade da sua CNH.</span>
+    </div>
+    <div class="field" id="f-mei">
+      <label class="field-label">Situação do seu MEI <span class="req">*</span></label>
+      <div class="options">
+        <div class="opt-item" onclick="selOpt(this,'mei','ativo')"><span class="opt-dot"></span><span class="opt-label">MEI ativo com CNAE de transporte de cargas ✅</span><input type="radio" name="mei" value="ativo"></div>
+        <div class="opt-item" onclick="selOpt(this,'mei','ajustar')"><span class="opt-dot"></span><span class="opt-label">Tenho MEI, mas preciso ajustar o CNAE</span><input type="radio" name="mei" value="ajustar"></div>
+        <div class="opt-item" onclick="selOpt(this,'mei','abrir')"><span class="opt-dot"></span><span class="opt-label">Ainda não tenho, pretendo abrir</span><input type="radio" name="mei" value="abrir"></div>
+        <div class="opt-item" onclick="selOpt(this,'mei','_nao')"><span class="opt-dot"></span><span class="opt-label">Não tenho e não pretendo abrir</span><input type="radio" name="mei" value="_nao"></div>
+      </div>
+      <span class="err-msg" id="err-mei">Selecione uma opção.</span>
+    </div>
+    <div class="field" id="f-antt">
+      <label class="field-label">Situação do ANTT / RNTRC <span class="req">*</span></label>
+      <div class="options">
+        <div class="opt-item" onclick="selOpt(this,'antt','ativo')"><span class="opt-dot"></span><span class="opt-label">ANTT ativo e regular ✅</span><input type="radio" name="antt" value="ativo"></div>
+        <div class="opt-item" onclick="selOpt(this,'antt','regularizar')"><span class="opt-dot"></span><span class="opt-label">Ainda não tenho, pretendo regularizar</span><input type="radio" name="antt" value="regularizar"></div>
+        <div class="opt-item" onclick="selOpt(this,'antt','nao')"><span class="opt-dot"></span><span class="opt-label">Não tenho</span><input type="radio" name="antt" value="nao"></div>
+      </div>
+      <span class="err-msg" id="err-antt">Selecione uma opção.</span>
+    </div>
+    <div class="nav-row">
+      <button class="btn-back" onclick="back(3)">← Voltar</button>
+      <button class="btn-next" onclick="next(3)">Próximo →</button>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 4 — EXPERIÊNCIA -->
+  <div class="section" id="sec-4">
+    <div class="section-header">
+      <div class="section-pill">04 / 05</div>
+      <h2 class="section-title">Experiência e disponibilidade</h2>
+      <p class="section-desc">Sua trajetória com entregas e disponibilidade de início.</p>
+    </div>
+    <div class="field" id="f-exp">
+      <label class="field-label">Há quanto tempo trabalha com entregas porta a porta? <span class="req">*</span></label>
+      <div class="options">
+        <div class="opt-item" onclick="selOpt(this,'exp','_menos6')"><span class="opt-dot"></span><span class="opt-label">Menos de 6 meses</span><input type="radio" name="exp" value="_menos6"></div>
+        <div class="opt-item" onclick="selOpt(this,'exp','6a12')"><span class="opt-dot"></span><span class="opt-label">6 a 12 meses</span><input type="radio" name="exp" value="6a12"></div>
+        <div class="opt-item" onclick="selOpt(this,'exp','1a2')"><span class="opt-dot"></span><span class="opt-label">1 a 2 anos</span><input type="radio" name="exp" value="1a2"></div>
+        <div class="opt-item" onclick="selOpt(this,'exp','mais2')"><span class="opt-dot"></span><span class="opt-label">Mais de 2 anos</span><input type="radio" name="exp" value="mais2"></div>
+      </div>
+      <span class="err-msg" id="err-exp">Selecione uma opção.</span>
+    </div>
+    <div class="field">
+      <label class="field-label">Plataformas onde já trabalhou com entregas <span style="color:var(--mu);font-weight:400">(opcional)</span></label>
+      <div class="options" style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div class="opt-item" onclick="togCheck(this,'plat','meli')"><span class="opt-check"></span><span class="opt-label">Mercado Livre</span><input type="checkbox" name="plat" value="meli"></div>
+        <div class="opt-item" onclick="togCheck(this,'plat','amazon')"><span class="opt-check"></span><span class="opt-label">Amazon</span><input type="checkbox" name="plat" value="amazon"></div>
+        <div class="opt-item" onclick="togCheck(this,'plat','ifood')"><span class="opt-check"></span><span class="opt-label">iFood</span><input type="checkbox" name="plat" value="ifood"></div>
+        <div class="opt-item" onclick="togCheck(this,'plat','correios')"><span class="opt-check"></span><span class="opt-label">Correios</span><input type="checkbox" name="plat" value="correios"></div>
+        <div class="opt-item" onclick="togCheck(this,'plat','jadlog')"><span class="opt-check"></span><span class="opt-label">Jadlog</span><input type="checkbox" name="plat" value="jadlog"></div>
+        <div class="opt-item" onclick="togCheck(this,'plat','outros')"><span class="opt-check"></span><span class="opt-label">Outros</span><input type="checkbox" name="plat" value="outros"></div>
+      </div>
+    </div>
+    <div class="field" id="f-media">
+      <label class="field-label">Média de entregas por dia <span class="req">*</span></label>
+      <div class="options">
+        <div class="opt-item" onclick="selOpt(this,'media','ate30')"><span class="opt-dot"></span><span class="opt-label">Até 30 entregas</span><input type="radio" name="media" value="ate30"></div>
+        <div class="opt-item" onclick="selOpt(this,'media','31a60')"><span class="opt-dot"></span><span class="opt-label">31 a 60 entregas</span><input type="radio" name="media" value="31a60"></div>
+        <div class="opt-item" onclick="selOpt(this,'media','61a90')"><span class="opt-dot"></span><span class="opt-label">61 a 90 entregas ⭐</span><input type="radio" name="media" value="61a90"></div>
+        <div class="opt-item" onclick="selOpt(this,'media','mais90')"><span class="opt-dot"></span><span class="opt-label">Mais de 90 entregas ⭐</span><input type="radio" name="media" value="mais90"></div>
+      </div>
+      <span class="err-msg" id="err-media">Selecione uma opção.</span>
+    </div>
+    <div class="field">
+      <label class="field-label">Usa aplicativo de roteirização? <span style="color:var(--mu);font-weight:400">(opcional)</span></label>
+      <div class="options">
+        <div class="opt-item" onclick="selOpt(this,'rota','sim')"><span class="opt-dot"></span><span class="opt-label">Sim, uso regularmente</span><input type="radio" name="rota" value="sim"></div>
+        <div class="opt-item" onclick="selOpt(this,'rota','eventual')"><span class="opt-dot"></span><span class="opt-label">Sim, eventualmente</span><input type="radio" name="rota" value="eventual"></div>
+        <div class="opt-item" onclick="selOpt(this,'rota','nao')"><span class="opt-dot"></span><span class="opt-label">Não uso</span><input type="radio" name="rota" value="nao"></div>
+      </div>
+    </div>
+    <div class="field" id="f-disp">
+      <label class="field-label">Disponibilidade para início <span class="req">*</span></label>
+      <div class="options">
+        <div class="opt-item" onclick="selOpt(this,'disp','imediata')"><span class="opt-dot"></span><span class="opt-label">Imediata — posso começar esta semana</span><input type="radio" name="disp" value="imediata"></div>
+        <div class="opt-item" onclick="selOpt(this,'disp','15dias')"><span class="opt-dot"></span><span class="opt-label">Em até 15 dias</span><input type="radio" name="disp" value="15dias"></div>
+        <div class="opt-item" onclick="selOpt(this,'disp','30dias')"><span class="opt-dot"></span><span class="opt-label">Em até 30 dias</span><input type="radio" name="disp" value="30dias"></div>
+      </div>
+      <span class="err-msg" id="err-disp">Selecione uma opção.</span>
+    </div>
+    <div class="field">
+      <label class="field-label">Informações adicionais <span style="color:var(--mu);font-weight:400">(opcional)</span></label>
+      <textarea id="obs" placeholder="Equipamentos extras, experiências específicas, referências..."></textarea>
+    </div>
+    <div class="nav-row">
+      <button class="btn-back" onclick="back(4)">← Voltar</button>
+      <button class="btn-next" onclick="next(4)">Revisar →</button>
+    </div>
+  </div>
+
+  <!-- SEÇÃO 5 — REVISÃO -->
+  <div class="section" id="sec-5">
+    <div class="section-header">
+      <div class="section-pill">05 / 05</div>
+      <h2 class="section-title">Confirme seus dados</h2>
+      <p class="section-desc">Revise as informações antes de enviar o cadastro.</p>
+    </div>
+    <div id="review-box"></div>
+    <div class="confirm-box">
+      <input type="checkbox" id="conf-check">
+      <label class="confirm-label" for="conf-check">Confirmo que todas as informações acima são <strong>verdadeiras e corretas</strong>. Estou ciente de que dados falsos podem invalidar meu cadastro.</label>
+    </div>
+    <button class="btn-submit" onclick="submit()">✅ Enviar cadastro</button>
+    <div class="nav-row" style="border-top:none;padding-top:0;margin-top:8px">
+      <button class="btn-back" onclick="back(5)">← Voltar e editar</button>
+      <span></span>
+    </div>
+  </div>
+
+  <!-- SUCESSO -->
+  <div class="success" id="success">
+    <div class="success-icon">🎉</div>
+    <h2 class="success-title">Cadastro enviado!</h2>
+    <p class="success-sub">Obrigado, <span class="success-name" id="suc-nome"></span>! Nossa equipe vai analisar seu perfil e entrar em contato em até <strong>48h úteis pelo WhatsApp</strong>. Fique de olho nas mensagens! 🚚</p>
+  </div>
+
+  <!-- REPROVADO POR CIDADE/DOCS -->
+  <div class="rejection" id="rej-geral">
+    <div class="rejection-icon">🙏</div>
+    <h2 class="rejection-title">Agradecemos seu interesse!</h2>
+    <p class="rejection-sub">Infelizmente seu perfil não atende aos requisitos atuais da operação Kangu.</p>
+    <div class="rejection-future">Assim que os requisitos forem atendidos, fique à vontade para se candidatar novamente. Boa sorte na estrada! 🚗</div>
+  </div>
+
+  <!-- REPROVADO POR EXPERIÊNCIA -->
+  <div class="rejection" id="rej-exp">
+    <div class="rejection-icon">⏳</div>
+    <h2 class="rejection-title">Obrigado pela disposição!</h2>
+    <p class="rejection-sub">No momento buscamos motoristas com pelo menos <strong>6 meses de experiência</strong> em entregas porta a porta.</p>
+    <div class="rejection-future">Guardamos seu contato no banco de talentos! Ao completar esse tempo de estrada, entre em contato novamente — será um prazer avaliar seu perfil! 💪🚗</div>
+  </div>
+
+</div>
+
+<script>
+let cur=1;
+const data={};
+
+// MASKS
+document.getElementById('tel').oninput=function(){
+  let v=this.value.replace(/\D/g,'');
+  if(v.length<=10)v=v.replace(/^(\d{2})(\d)/,'($1) $2').replace(/(\d{4})(\d)/,'$1-$2');
+  else v=v.replace(/^(\d{2})(\d)/,'($1) $2').replace(/(\d{5})(\d)/,'$1-$2');
+  this.value=v;
+};
+document.getElementById('cpf').oninput=function(){
+  let v=this.value.replace(/\D/g,'');
+  v=v.replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d)/,'$1.$2').replace(/(\d{3})(\d{1,2})$/,'$1-$2');
+  this.value=v;
+};
+document.getElementById('placa').oninput=function(){
+  this.value=this.value.replace(/[^A-Za-z0-9]/g,'').toUpperCase().replace(/^([A-Z]{3})(\w)/,'$1-$2');
+};
+
+function selOpt(el,name,val){
+  document.querySelectorAll(`input[name="${name}"]`).forEach(i=>{i.closest('.opt-item').classList.remove('selected')});
+  el.classList.add('selected');
+  el.querySelector('input').checked=true;
+  data[name]=val;
+}
+function togCheck(el,name,val){
+  el.classList.toggle('selected');
+  el.querySelector('input').checked=el.classList.contains('selected');
+  if(!data[name])data[name]=[];
+  if(el.classList.contains('selected')){if(!data[name].includes(val))data[name].push(val);}
+  else{data[name]=data[name].filter(v=>v!==val);}
+}
+
+function gv(id){return(document.getElementById(id)||{}).value||'';}
+function gr(name){const el=document.querySelector(`input[name="${name}"]:checked`);return el?el.value:'';}
+
+function showErr(fieldId,show){
+  const f=document.getElementById('f-'+fieldId)||document.getElementById(fieldId);
+  if(!f)return;
+  if(show){f.classList.add('field-error');}else{f.classList.remove('field-error');}
+}
+
+function validate(step){
+  let ok=true;
+  if(step===1){
+    if(!gv('nome').trim()){showErr('nome',1);ok=false;}else{showErr('nome',0);}
+    if(!gv('tel').trim()||gv('tel').length<14){showErr('tel',1);ok=false;}else{showErr('tel',0);}
+    if(!gv('cpf').trim()||gv('cpf').length<14){showErr('cpf',1);ok=false;}else{showErr('cpf',0);}
+    if(!gr('cidade')){document.getElementById('err-cidade').style.display='block';ok=false;}else{document.getElementById('err-cidade').style.display='none';}
+  }
+  if(step===2){
+    if(!gr('modal')){document.getElementById('err-modal').style.display='block';ok=false;}else{document.getElementById('err-modal').style.display='none';}
+    if(!gv('marca').trim()){showErr('marca',1);ok=false;}else{showErr('marca',0);}
+    if(!gv('ano')){document.getElementById('err-ano').style.display='block';ok=false;}else{document.getElementById('err-ano').style.display='none';}
+    if(!gv('placa').trim()){showErr('placa',1);ok=false;}else{showErr('placa',0);}
+    if(!gr('placa_verm')){document.getElementById('err-placa-verm').style.display='block';ok=false;}else{document.getElementById('err-placa-verm').style.display='none';}
+    if(!gr('capota')){document.getElementById('err-capota').style.display='block';ok=false;}else{document.getElementById('err-capota').style.display='none';}
+  }
+  if(step===3){
+    if(!gr('ear')){document.getElementById('err-ear').style.display='block';ok=false;}else{document.getElementById('err-ear').style.display='none';}
+    if(!gv('cnh_val')){showErr('cnh-val',1);ok=false;}else{showErr('cnh-val',0);}
+    if(!gr('mei')){document.getElementById('err-mei').style.display='block';ok=false;}else{document.getElementById('err-mei').style.display='none';}
+    if(!gr('antt')){document.getElementById('err-antt').style.display='block';ok=false;}else{document.getElementById('err-antt').style.display='none';}
+  }
+  if(step===4){
+    if(!gr('exp')){document.getElementById('err-exp').style.display='block';ok=false;}else{document.getElementById('err-exp').style.display='none';}
+    if(!gr('media')){document.getElementById('err-media').style.display='block';ok=false;}else{document.getElementById('err-media').style.display='none';}
+    if(!gr('disp')){document.getElementById('err-disp').style.display='block';ok=false;}else{document.getElementById('err-disp').style.display='none';}
+  }
+  return ok;
+}
+
+function checkElim(step){
+  if(step===1){
+    if(gr('cidade')==='_fora'){showPanel('rej-geral');return true;}
+  }
+  if(step===2){
+    if(gr('modal')==='_outro'){showPanel('rej-geral');return true;}
+    if(gv('ano')==='_antigo'){showPanel('rej-geral');return true;}
+    if(gr('placa_verm')==='_nao'){showPanel('rej-geral');return true;}
+    if(gr('capota')==='_nao'){showPanel('rej-geral');return true;}
+  }
+  if(step===3){
+    if(gr('ear')==='_nao'){showPanel('rej-geral');return true;}
+    if(gr('mei')==='_nao'){showPanel('rej-geral');return true;}
+  }
+  if(step===4){
+    if(gr('exp')==='_menos6'){showPanel('rej-exp');return true;}
+  }
+  return false;
+}
+
+function showPanel(id){
+  document.querySelectorAll('.section,.success,.rejection').forEach(e=>e.style.display='none');
+  document.getElementById(id).style.display='block';
+  document.querySelector('.progress-wrap').style.display='none';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function next(step){
+  if(!validate(step))return;
+  if(checkElim(step))return;
+  cur=step+1;
+  if(cur===5)buildReview();
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('sec-'+cur).classList.add('active');
+  updateProgress(cur);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function back(step){
+  cur=step-1;
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('sec-'+cur).classList.add('active');
+  updateProgress(cur);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function updateProgress(step){
+  const pct=[0,20,40,60,80,100];
+  document.getElementById('prog-fill').style.width=pct[step]+'%';
+  for(let i=1;i<=5;i++){
+    const el=document.getElementById('pl-'+i);
+    el.classList.toggle('active',i===step);
+  }
+}
+
+function buildReview(){
+  const labels={
+    'Piracicaba':'Piracicaba','Rio das Pedras':'Rio das Pedras','Saltinho':'Saltinho',
+    'Cerquilho':'Cerquilho','Tietê':'Tietê','Laranjal Paulista':'Laranjal Paulista','Laras':'Laras',
+    'Utilitário':'Utilitário','Van':'Van','VUC':'VUC',
+    'sim':'Sim ✅','instalar':'Pretendo instalar',
+    'ativo':'Ativo ✅','ajustar':'Precisa ajustar CNAE','abrir':'Pretendo abrir','regularizar':'Vou regularizar','nao':'Não tenho',
+    'nsei':'Não sei verificar',
+    '6a12':'6 a 12 meses','1a2':'1 a 2 anos','mais2':'Mais de 2 anos',
+    'ate30':'Até 30','31a60':'31 a 60','61a90':'61 a 90 ⭐','mais90':'Mais de 90 ⭐',
+    'imediata':'Imediata','15dias':'Até 15 dias','30dias':'Até 30 dias',
+    'eventual':'Eventualmente'
+  };
+  const L=v=>labels[v]||v||'—';
+  const rows=[
+    ['Dados pessoais',[
+      ['Nome',gv('nome')],['WhatsApp',gv('tel')],['CPF',gv('cpf')],['Cidade',L(gr('cidade'))],['E-mail',gv('email')||'—']
+    ]],
+    ['Veículo',[
+      ['Modal',L(gr('modal'))],['Marca/Modelo',gv('marca')],['Ano',gv('ano')],['Placa',gv('placa')],
+      ['Placa vermelha',L(gr('placa_verm'))],['Capota de fibra',L(gr('capota'))]
+    ]],
+    ['Documentação',[
+      ['CNH EAR',L(gr('ear'))],['Validade CNH',gv('cnh_val')],['MEI',L(gr('mei'))],['ANTT',L(gr('antt'))]
+    ]],
+    ['Experiência',[
+      ['Tempo de experiência',L(gr('exp'))],['Entregas/dia',L(gr('media'))],['Disponibilidade',L(gr('disp'))]
+    ]]
+  ];
+  document.getElementById('review-box').innerHTML=rows.map(([sec,fields])=>`
+    <div class="review-section">
+      <div class="review-section-title">${sec}</div>
+      ${fields.map(([k,v])=>`<div class="review-row"><span class="review-key">${k}</span><span class="review-val">${v}</span></div>`).join('')}
+    </div>`).join('');
+}
+
+function submit(){
+  if(!document.getElementById('conf-check').checked){
+    alert('Por favor confirme que as informações são verdadeiras para continuar.');
+    return;
+  }
+  const nome=gv('nome').split(' ')[0];
+  document.getElementById('suc-nome').textContent=nome;
+  showPanel('success');
+}
+</script>
+</body>
+</html>
