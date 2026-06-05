@@ -17,7 +17,6 @@
 html{scroll-behavior:smooth}
 body{font-family:var(--font);background:var(--bg);color:var(--dk);min-height:100vh}
 
-/* HEADER */
 .header{background:var(--dk);padding:0;position:relative;overflow:hidden}
 .header-inner{max-width:680px;margin:0 auto;padding:40px 24px 36px;position:relative;z-index:1}
 .header::before{content:'';position:absolute;right:-80px;top:-80px;width:320px;height:320px;border-radius:50%;background:rgba(245,197,24,.08);pointer-events:none}
@@ -29,7 +28,6 @@ body{font-family:var(--font);background:var(--bg);color:var(--dk);min-height:100
 .header-title span{color:var(--y)}
 .header-sub{font-size:13px;color:rgba(255,255,255,.45);line-height:1.6}
 
-/* PROGRESS */
 .progress-wrap{background:var(--dk2);padding:0}
 .progress-inner{max-width:680px;margin:0 auto;padding:16px 24px}
 .progress-bar-bg{height:3px;background:rgba(255,255,255,.1);border-radius:2px;margin-bottom:10px}
@@ -38,20 +36,15 @@ body{font-family:var(--font);background:var(--bg);color:var(--dk);min-height:100
 .p-label{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.06em;text-transform:uppercase;transition:color .3s}
 .p-label.active{color:var(--y)}
 
-/* MAIN */
 .main{max-width:680px;margin:0 auto;padding:32px 24px 60px}
-
-/* SECTIONS */
 .section{display:none;animation:fadeIn .3s ease}
 .section.active{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-
 .section-header{margin-bottom:24px}
 .section-pill{display:inline-flex;align-items:center;gap:6px;background:var(--dk);color:var(--y);font-family:var(--mono);font-size:10px;font-weight:500;padding:4px 12px;border-radius:4px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
 .section-title{font-size:20px;font-weight:700;color:var(--dk);margin-bottom:4px}
 .section-desc{font-size:13px;color:var(--mu);line-height:1.55}
 
-/* FIELDS */
 .field{margin-bottom:20px}
 .field-label{display:block;font-size:13px;font-weight:600;color:var(--dk);margin-bottom:8px}
 .field-label .req{color:var(--re);margin-left:2px}
@@ -65,37 +58,33 @@ input:focus,select:focus,textarea:focus{border-color:var(--y);box-shadow:0 0 0 3
 select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238A8880' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
 textarea{resize:vertical;min-height:90px;line-height:1.6}
 .field-error input,.field-error select,.field-error textarea{border-color:var(--re)}
-.field-error .err-msg{display:block}
+.field-error .err-msg{display:block!important}
 .err-msg{display:none;font-size:11px;color:var(--re);margin-top:5px;font-weight:500}
 
-/* RADIO / CHECK */
 .options{display:flex;flex-direction:column;gap:8px}
 .opt-item{display:flex;align-items:center;gap:10px;padding:12px 14px;border:1.5px solid var(--line);border-radius:var(--radius);cursor:pointer;transition:all .2s;background:var(--wh);user-select:none}
 .opt-item:hover{border-color:var(--y);background:#FFFDF0}
 .opt-item.selected{border-color:var(--y);background:#FFFDF0}
-.opt-item.selected .opt-dot{background:var(--y);border-color:var(--y)}
-.opt-item.selected .opt-check{background:var(--y);border-color:var(--y)}
 .opt-dot{width:16px;height:16px;border-radius:50%;border:2px solid var(--line);flex-shrink:0;transition:all .2s;position:relative}
+.opt-item.selected .opt-dot{background:var(--y);border-color:var(--y)}
 .opt-dot::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:6px;height:6px;border-radius:50%;background:var(--dk);opacity:0;transition:opacity .2s}
 .opt-item.selected .opt-dot::after{opacity:1}
 .opt-check{width:16px;height:16px;border-radius:4px;border:2px solid var(--line);flex-shrink:0;transition:all .2s;position:relative}
+.opt-item.selected .opt-check{background:var(--y);border-color:var(--y)}
 .opt-check::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:10px;color:var(--dk);opacity:0;transition:opacity .2s;font-weight:700}
 .opt-item.selected .opt-check::after{opacity:1}
 .opt-label{font-size:13px;color:var(--dk);flex:1;line-height:1.4}
 .opt-item input{display:none}
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 
-/* NAVIGATION */
 .nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:28px;padding-top:20px;border-top:1px solid var(--line)}
-.btn-back{padding:11px 20px;border:1.5px solid var(--line);border-radius:var(--radius);background:transparent;font-family:var(--font);font-size:13px;font-weight:600;color:var(--mu);cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px}
+.btn-back{padding:11px 20px;border:1.5px solid var(--line);border-radius:var(--radius);background:transparent;font-family:var(--font);font-size:13px;font-weight:600;color:var(--mu);cursor:pointer;transition:all .2s}
 .btn-back:hover{border-color:var(--dk);color:var(--dk)}
-.btn-next{padding:12px 28px;border:none;border-radius:var(--radius);background:var(--y);font-family:var(--font);font-size:13px;font-weight:700;color:var(--dk);cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:6px}
+.btn-next{padding:12px 28px;border:none;border-radius:var(--radius);background:var(--y);font-family:var(--font);font-size:13px;font-weight:700;color:var(--dk);cursor:pointer;transition:all .2s}
 .btn-next:hover{background:var(--y2);transform:translateY(-1px);box-shadow:0 4px 12px rgba(245,197,24,.4)}
-.btn-next:active{transform:translateY(0)}
 .btn-submit{padding:14px 36px;border:none;border-radius:var(--radius);background:var(--gr);font-family:var(--font);font-size:14px;font-weight:700;color:var(--wh);cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:8px;width:100%;justify-content:center;margin-top:20px}
-.btn-submit:hover{background:#15803d;transform:translateY(-1px);box-shadow:0 4px 16px rgba(22,163,74,.3)}
+.btn-submit:hover{background:#15803d;transform:translateY(-1px)}
 
-/* REVIEW */
 .review-section{margin-bottom:16px}
 .review-section-title{font-size:11px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.08em;font-family:var(--mono);margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
 .review-row{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px solid #F0EEE8;gap:12px}
@@ -107,33 +96,70 @@ textarea{resize:vertical;min-height:90px;line-height:1.6}
 .confirm-label{font-size:13px;color:rgba(255,255,255,.7);line-height:1.55;cursor:pointer}
 .confirm-label strong{color:var(--wh)}
 
-/* SUCCESS */
 .success{display:none;text-align:center;padding:48px 20px}
 .success-icon{width:72px;height:72px;border-radius:50%;background:var(--y);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:32px}
 .success-title{font-size:24px;font-weight:700;color:var(--dk);margin-bottom:10px}
 .success-sub{font-size:14px;color:var(--mu);line-height:1.65;max-width:380px;margin:0 auto}
-.success-name{color:var(--dk);font-weight:700}
 
-/* REJECTION */
 .rejection{display:none;text-align:center;padding:48px 20px}
 .rejection-icon{width:64px;height:64px;border-radius:50%;background:#F1F0EC;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:28px;border:2px solid var(--line)}
 .rejection-title{font-size:20px;font-weight:700;color:var(--dk);margin-bottom:8px}
 .rejection-sub{font-size:13px;color:var(--mu);line-height:1.6;max-width:360px;margin:0 auto}
 .rejection-future{background:var(--bg);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;margin:20px auto 0;max-width:360px;font-size:12px;color:var(--mu);line-height:1.6}
 
-/* STEP COUNTER */
-.step-count{font-family:var(--mono);font-size:11px;color:var(--mu);margin-bottom:4px}
+/* ============ PAINEL SECRETO ============ */
+#painel-secreto{display:none;position:fixed;inset:0;background:#0A0A0A;z-index:9999;overflow:auto;font-family:var(--mono)}
+.ps-header{background:#111;border-bottom:1px solid #222;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:1}
+.ps-title{font-size:14px;font-weight:700;color:var(--y);letter-spacing:.06em;display:flex;align-items:center;gap:10px}
+.ps-badge{background:var(--y);color:#000;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px}
+.ps-actions{display:flex;gap:8px;align-items:center}
+.ps-btn{padding:7px 16px;border:none;border-radius:8px;font-family:var(--mono);font-size:11px;font-weight:600;cursor:pointer;transition:all .2s}
+.ps-btn-csv{background:var(--y);color:#000}
+.ps-btn-csv:hover{background:var(--y2)}
+.ps-btn-close{background:#222;color:#888;border:1px solid #333}
+.ps-btn-close:hover{background:#333;color:#fff}
+.ps-btn-clear{background:#1a0000;color:#DC2626;border:1px solid #3a0000}
+.ps-btn-clear:hover{background:#2a0000}
+.ps-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:16px 24px;background:#0F0F0F;border-bottom:1px solid #1a1a1a}
+.ps-stat{background:#151515;border:1px solid #222;border-radius:8px;padding:10px 14px}
+.ps-stat-n{font-size:22px;font-weight:700;color:var(--wh)}
+.ps-stat-l{font-size:10px;color:#555;margin-top:2px;letter-spacing:.04em}
+.ps-stat-n.yellow{color:var(--y)}
+.ps-stat-n.green{color:#16A34A}
+.ps-stat-n.red{color:#DC2626}
+.ps-filters{padding:12px 24px;background:#0F0F0F;border-bottom:1px solid #1a1a1a;display:flex;gap:8px;flex-wrap:wrap}
+.ps-filter{padding:5px 12px;border:1px solid #333;border-radius:6px;background:#151515;color:#888;font-size:11px;font-family:var(--mono);cursor:pointer;transition:all .2s}
+.ps-filter.active{background:var(--y);color:#000;border-color:var(--y)}
+.ps-search{flex:1;min-width:180px;padding:6px 12px;border:1px solid #333;border-radius:6px;background:#151515;color:#ccc;font-size:11px;font-family:var(--mono);outline:none}
+.ps-search:focus{border-color:var(--y)}
+.ps-table-wrap{padding:16px 24px;overflow-x:auto}
+table.ps-table{width:100%;border-collapse:collapse;min-width:900px;font-size:11px}
+table.ps-table th{padding:8px 10px;text-align:left;color:#555;border-bottom:1px solid #1a1a1a;font-weight:600;letter-spacing:.04em;white-space:nowrap;cursor:pointer;user-select:none}
+table.ps-table th:hover{color:#888}
+table.ps-table td{padding:9px 10px;border-bottom:1px solid #151515;color:#ccc;white-space:nowrap;vertical-align:middle}
+table.ps-table tr:hover td{background:#111}
+.ps-badge-novo{background:#1a2a1a;color:#16A34A;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600}
+.ps-badge-analisado{background:#1a1a2a;color:#3B82F6;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600}
+.ps-badge-aprovado{background:#1a2a1a;color:var(--y);padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600}
+.ps-badge-reprovado{background:#2a1a1a;color:#DC2626;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600}
+.ps-empty{text-align:center;padding:48px;color:#333;font-size:13px}
+.ps-footer{padding:10px 24px;border-top:1px solid #1a1a1a;font-size:10px;color:#333;display:flex;justify-content:space-between}
+.ps-hint{position:fixed;bottom:16px;right:16px;background:#111;border:1px solid #222;border-radius:8px;padding:8px 14px;font-family:var(--mono);font-size:10px;color:#444;pointer-events:none;z-index:100}
+.ps-hint span{color:#F5C518}
+select.ps-sel{background:#151515;color:#ccc;border:1px solid #333;border-radius:4px;padding:3px 6px;font-size:10px;font-family:var(--mono);outline:none;cursor:pointer}
 
 @media(max-width:480px){
   .two-col{grid-template-columns:1fr}
-  .header-inner{padding:28px 16px 24px}
-  .main{padding:20px 16px 50px}
-  .progress-inner{padding:14px 16px}
+  .header-inner,.main,.progress-inner{padding-left:16px;padding-right:16px}
+  .ps-stats{grid-template-columns:1fr 1fr}
+  .ps-filters{padding:10px 16px}
+  .ps-table-wrap{padding:10px 16px}
 }
 </style>
 </head>
 <body>
 
+<!-- HEADER -->
 <div class="header">
   <div class="header-inner">
     <div class="logo-row">
@@ -145,7 +171,8 @@ textarea{resize:vertical;min-height:90px;line-height:1.6}
   </div>
 </div>
 
-<div class="progress-wrap">
+<!-- PROGRESSO -->
+<div class="progress-wrap" id="prog-wrap">
   <div class="progress-inner">
     <div class="progress-bar-bg"><div class="progress-bar-fill" id="prog-fill" style="width:20%"></div></div>
     <div class="progress-labels">
@@ -160,7 +187,7 @@ textarea{resize:vertical;min-height:90px;line-height:1.6}
 
 <div class="main">
 
-  <!-- SEÇÃO 1 — DADOS PESSOAIS -->
+  <!-- SEC 1 -->
   <div class="section active" id="sec-1">
     <div class="section-header">
       <div class="section-pill">01 / 05</div>
@@ -170,13 +197,13 @@ textarea{resize:vertical;min-height:90px;line-height:1.6}
     <div class="field" id="f-nome">
       <label class="field-label">Nome completo <span class="req">*</span></label>
       <input type="text" id="nome" placeholder="Seu nome completo">
-      <span class="err-msg">Por favor informe seu nome completo.</span>
+      <span class="err-msg">Informe seu nome completo.</span>
     </div>
     <div class="two-col">
       <div class="field" id="f-tel">
         <label class="field-label">WhatsApp <span class="req">*</span></label>
         <input type="tel" id="tel" placeholder="(19) 99999-9999" maxlength="15">
-        <span class="err-msg">Informe seu WhatsApp com DDD.</span>
+        <span class="err-msg">Informe com DDD.</span>
       </div>
       <div class="field" id="f-cpf">
         <label class="field-label">CPF <span class="req">*</span></label>
@@ -196,19 +223,16 @@ textarea{resize:vertical;min-height:90px;line-height:1.6}
         <div class="opt-item" onclick="selOpt(this,'cidade','Laras')"><span class="opt-dot"></span><span class="opt-label">Laras</span><input type="radio" name="cidade" value="Laras"></div>
         <div class="opt-item" onclick="selOpt(this,'cidade','_fora')"><span class="opt-dot"></span><span class="opt-label">Não moro nessas cidades</span><input type="radio" name="cidade" value="_fora"></div>
       </div>
-      <span class="err-msg" id="err-cidade">Selecione sua cidade.</span>
+      <span class="err-msg" id="err-cidade" style="display:none">Selecione sua cidade.</span>
     </div>
     <div class="field">
       <label class="field-label">E-mail <span style="color:var(--mu);font-weight:400">(opcional)</span></label>
       <input type="email" id="email" placeholder="seu@email.com">
     </div>
-    <div class="nav-row">
-      <span></span>
-      <button class="btn-next" onclick="next(1)">Próximo →</button>
-    </div>
+    <div class="nav-row"><span></span><button class="btn-next" onclick="next(1)">Próximo →</button></div>
   </div>
 
-  <!-- SEÇÃO 2 — VEÍCULO -->
+  <!-- SEC 2 -->
   <div class="section" id="sec-2">
     <div class="section-header">
       <div class="section-pill">02 / 05</div>
@@ -223,7 +247,7 @@ textarea{resize:vertical;min-height:90px;line-height:1.6}
         <div class="opt-item" onclick="selOpt(this,'modal','VUC')"><span class="opt-dot"></span><span class="opt-label">VUC — Veículo Urbano de Carga</span><input type="radio" name="modal" value="VUC"></div>
         <div class="opt-item" onclick="selOpt(this,'modal','_outro')"><span class="opt-dot"></span><span class="opt-label">Outro tipo de veículo</span><input type="radio" name="modal" value="_outro"></div>
       </div>
-      <span class="err-msg" id="err-modal">Selecione o tipo de veículo.</span>
+      <span class="err-msg" id="err-modal" style="display:none">Selecione o tipo de veículo.</span>
     </div>
     <div class="two-col">
       <div class="field" id="f-marca">
@@ -241,30 +265,30 @@ textarea{resize:vertical;min-height:90px;line-height:1.6}
           <option>2013</option><option>2012</option><option>2011</option>
           <option value="_antigo">2010 ou anterior</option>
         </select>
-        <span class="err-msg" id="err-ano">Selecione o ano.</span>
+        <span class="err-msg" id="err-ano" style="display:none">Selecione o ano.</span>
       </div>
     </div>
     <div class="field" id="f-placa">
-      <label class="field-label">Placa do veículo <span class="req">*</span></label>
-      <input type="text" id="placa" placeholder="ABC-1234 ou ABC1D23" maxlength="8">
-      <span class="err-msg">Informe a placa do veículo.</span>
+      <label class="field-label">Placa <span class="req">*</span></label>
+      <input type="text" id="placa" placeholder="ABC-1234" maxlength="8">
+      <span class="err-msg">Informe a placa.</span>
     </div>
     <div class="field" id="f-placa-verm">
-      <label class="field-label">O veículo possui placa vermelha (uso comercial)? <span class="req">*</span></label>
+      <label class="field-label">Possui placa vermelha (uso comercial)? <span class="req">*</span></label>
       <div class="options">
-        <div class="opt-item" onclick="selOpt(this,'placa_verm','sim')"><span class="opt-dot"></span><span class="opt-label">Sim, placa vermelha ✅</span><input type="radio" name="placa_verm" value="sim"></div>
-        <div class="opt-item" onclick="selOpt(this,'placa_verm','_nao')"><span class="opt-dot"></span><span class="opt-label">Não, placa comum</span><input type="radio" name="placa_verm" value="_nao"></div>
+        <div class="opt-item" onclick="selOpt(this,'placa_verm','Sim')"><span class="opt-dot"></span><span class="opt-label">Sim ✅</span><input type="radio" name="placa_verm" value="Sim"></div>
+        <div class="opt-item" onclick="selOpt(this,'placa_verm','_nao')"><span class="opt-dot"></span><span class="opt-label">Não</span><input type="radio" name="placa_verm" value="_nao"></div>
       </div>
-      <span class="err-msg" id="err-placa-verm">Selecione uma opção.</span>
+      <span class="err-msg" id="err-placa-verm" style="display:none">Selecione uma opção.</span>
     </div>
     <div class="field" id="f-capota">
-      <label class="field-label">O veículo possui capota de fibra? <span class="req">*</span></label>
+      <label class="field-label">Possui capota de fibra? <span class="req">*</span></label>
       <div class="options">
-        <div class="opt-item" onclick="selOpt(this,'capota','sim')"><span class="opt-dot"></span><span class="opt-label">Sim ✅</span><input type="radio" name="capota" value="sim"></div>
-        <div class="opt-item" onclick="selOpt(this,'capota','instalar')"><span class="opt-dot"></span><span class="opt-label">Não, mas pretendo instalar</span><input type="radio" name="capota" value="instalar"></div>
+        <div class="opt-item" onclick="selOpt(this,'capota','Sim')"><span class="opt-dot"></span><span class="opt-label">Sim ✅</span><input type="radio" name="capota" value="Sim"></div>
+        <div class="opt-item" onclick="selOpt(this,'capota','Pretendo instalar')"><span class="opt-dot"></span><span class="opt-label">Não, mas pretendo instalar</span><input type="radio" name="capota" value="Pretendo instalar"></div>
         <div class="opt-item" onclick="selOpt(this,'capota','_nao')"><span class="opt-dot"></span><span class="opt-label">Não tenho</span><input type="radio" name="capota" value="_nao"></div>
       </div>
-      <span class="err-msg" id="err-capota">Selecione uma opção.</span>
+      <span class="err-msg" id="err-capota" style="display:none">Selecione uma opção.</span>
     </div>
     <div class="nav-row">
       <button class="btn-back" onclick="back(2)">← Voltar</button>
@@ -272,7 +296,7 @@ textarea{resize:vertical;min-height:90px;line-height:1.6}
     </div>
   </div>
 
-  <!-- SEÇÃO 3 — DOCUMENTAÇÃO -->
+  <!-- SEC 3 -->
   <div class="section" id="sec-3">
     <div class="section-header">
       <div class="section-pill">03 / 05</div>
@@ -280,38 +304,38 @@ textarea{resize:vertical;min-height:90px;line-height:1.6}
       <p class="section-desc">Verificação dos documentos obrigatórios para a operação.</p>
     </div>
     <div class="field" id="f-ear">
-      <label class="field-label">Sua CNH possui EAR (Exerce Atividade Remunerada)? <span class="req">*</span></label>
-      <p class="field-hint" style="margin-bottom:8px">Verifique na frente da sua carteira de habilitação — deve aparecer "EAR" no campo de observações.</p>
+      <label class="field-label">Sua CNH possui EAR? <span class="req">*</span></label>
+      <p style="font-size:11px;color:var(--mu);margin-bottom:8px">Verifique na frente da carteira de habilitação — deve aparecer "EAR" no campo de observações.</p>
       <div class="options">
-        <div class="opt-item" onclick="selOpt(this,'ear','sim')"><span class="opt-dot"></span><span class="opt-label">Sim, minha CNH tem EAR ✅</span><input type="radio" name="ear" value="sim"></div>
-        <div class="opt-item" onclick="selOpt(this,'ear','nsei')"><span class="opt-dot"></span><span class="opt-label">Não sei verificar</span><input type="radio" name="ear" value="nsei"></div>
+        <div class="opt-item" onclick="selOpt(this,'ear','Sim')"><span class="opt-dot"></span><span class="opt-label">Sim ✅</span><input type="radio" name="ear" value="Sim"></div>
+        <div class="opt-item" onclick="selOpt(this,'ear','Não sei verificar')"><span class="opt-dot"></span><span class="opt-label">Não sei verificar</span><input type="radio" name="ear" value="Não sei verificar"></div>
         <div class="opt-item" onclick="selOpt(this,'ear','_nao')"><span class="opt-dot"></span><span class="opt-label">Não tenho EAR</span><input type="radio" name="ear" value="_nao"></div>
       </div>
-      <span class="err-msg" id="err-ear">Selecione uma opção.</span>
+      <span class="err-msg" id="err-ear" style="display:none">Selecione uma opção.</span>
     </div>
     <div class="field" id="f-cnh-val">
       <label class="field-label">Validade da CNH <span class="req">*</span></label>
       <input type="date" id="cnh_val">
-      <span class="err-msg">Informe a validade da sua CNH.</span>
+      <span class="err-msg">Informe a validade.</span>
     </div>
     <div class="field" id="f-mei">
-      <label class="field-label">Situação do seu MEI <span class="req">*</span></label>
+      <label class="field-label">Situação do MEI <span class="req">*</span></label>
       <div class="options">
-        <div class="opt-item" onclick="selOpt(this,'mei','ativo')"><span class="opt-dot"></span><span class="opt-label">MEI ativo com CNAE de transporte de cargas ✅</span><input type="radio" name="mei" value="ativo"></div>
-        <div class="opt-item" onclick="selOpt(this,'mei','ajustar')"><span class="opt-dot"></span><span class="opt-label">Tenho MEI, mas preciso ajustar o CNAE</span><input type="radio" name="mei" value="ajustar"></div>
-        <div class="opt-item" onclick="selOpt(this,'mei','abrir')"><span class="opt-dot"></span><span class="opt-label">Ainda não tenho, pretendo abrir</span><input type="radio" name="mei" value="abrir"></div>
+        <div class="opt-item" onclick="selOpt(this,'mei','Ativo com CNAE correto')"><span class="opt-dot"></span><span class="opt-label">MEI ativo com CNAE de transporte ✅</span><input type="radio" name="mei" value="Ativo com CNAE correto"></div>
+        <div class="opt-item" onclick="selOpt(this,'mei','Precisa ajustar CNAE')"><span class="opt-dot"></span><span class="opt-label">Tenho MEI, preciso ajustar CNAE</span><input type="radio" name="mei" value="Precisa ajustar CNAE"></div>
+        <div class="opt-item" onclick="selOpt(this,'mei','Pretendo abrir')"><span class="opt-dot"></span><span class="opt-label">Ainda não tenho, pretendo abrir</span><input type="radio" name="mei" value="Pretendo abrir"></div>
         <div class="opt-item" onclick="selOpt(this,'mei','_nao')"><span class="opt-dot"></span><span class="opt-label">Não tenho e não pretendo abrir</span><input type="radio" name="mei" value="_nao"></div>
       </div>
-      <span class="err-msg" id="err-mei">Selecione uma opção.</span>
+      <span class="err-msg" id="err-mei" style="display:none">Selecione uma opção.</span>
     </div>
     <div class="field" id="f-antt">
       <label class="field-label">Situação do ANTT / RNTRC <span class="req">*</span></label>
       <div class="options">
-        <div class="opt-item" onclick="selOpt(this,'antt','ativo')"><span class="opt-dot"></span><span class="opt-label">ANTT ativo e regular ✅</span><input type="radio" name="antt" value="ativo"></div>
-        <div class="opt-item" onclick="selOpt(this,'antt','regularizar')"><span class="opt-dot"></span><span class="opt-label">Ainda não tenho, pretendo regularizar</span><input type="radio" name="antt" value="regularizar"></div>
-        <div class="opt-item" onclick="selOpt(this,'antt','nao')"><span class="opt-dot"></span><span class="opt-label">Não tenho</span><input type="radio" name="antt" value="nao"></div>
+        <div class="opt-item" onclick="selOpt(this,'antt','Ativo')"><span class="opt-dot"></span><span class="opt-label">ANTT ativo ✅</span><input type="radio" name="antt" value="Ativo"></div>
+        <div class="opt-item" onclick="selOpt(this,'antt','Vou regularizar')"><span class="opt-dot"></span><span class="opt-label">Pretendo regularizar</span><input type="radio" name="antt" value="Vou regularizar"></div>
+        <div class="opt-item" onclick="selOpt(this,'antt','Não tenho')"><span class="opt-dot"></span><span class="opt-label">Não tenho</span><input type="radio" name="antt" value="Não tenho"></div>
       </div>
-      <span class="err-msg" id="err-antt">Selecione uma opção.</span>
+      <span class="err-msg" id="err-antt" style="display:none">Selecione uma opção.</span>
     </div>
     <div class="nav-row">
       <button class="btn-back" onclick="back(3)">← Voltar</button>
@@ -319,7 +343,7 @@ textarea{resize:vertical;min-height:90px;line-height:1.6}
     </div>
   </div>
 
-  <!-- SEÇÃO 4 — EXPERIÊNCIA -->
+  <!-- SEC 4 -->
   <div class="section" id="sec-4">
     <div class="section-header">
       <div class="section-pill">04 / 05</div>
@@ -327,56 +351,56 @@ textarea{resize:vertical;min-height:90px;line-height:1.6}
       <p class="section-desc">Sua trajetória com entregas e disponibilidade de início.</p>
     </div>
     <div class="field" id="f-exp">
-      <label class="field-label">Há quanto tempo trabalha com entregas porta a porta? <span class="req">*</span></label>
+      <label class="field-label">Tempo de experiência com entregas porta a porta <span class="req">*</span></label>
       <div class="options">
         <div class="opt-item" onclick="selOpt(this,'exp','_menos6')"><span class="opt-dot"></span><span class="opt-label">Menos de 6 meses</span><input type="radio" name="exp" value="_menos6"></div>
-        <div class="opt-item" onclick="selOpt(this,'exp','6a12')"><span class="opt-dot"></span><span class="opt-label">6 a 12 meses</span><input type="radio" name="exp" value="6a12"></div>
-        <div class="opt-item" onclick="selOpt(this,'exp','1a2')"><span class="opt-dot"></span><span class="opt-label">1 a 2 anos</span><input type="radio" name="exp" value="1a2"></div>
-        <div class="opt-item" onclick="selOpt(this,'exp','mais2')"><span class="opt-dot"></span><span class="opt-label">Mais de 2 anos</span><input type="radio" name="exp" value="mais2"></div>
+        <div class="opt-item" onclick="selOpt(this,'exp','6 a 12 meses')"><span class="opt-dot"></span><span class="opt-label">6 a 12 meses</span><input type="radio" name="exp" value="6 a 12 meses"></div>
+        <div class="opt-item" onclick="selOpt(this,'exp','1 a 2 anos')"><span class="opt-dot"></span><span class="opt-label">1 a 2 anos</span><input type="radio" name="exp" value="1 a 2 anos"></div>
+        <div class="opt-item" onclick="selOpt(this,'exp','Mais de 2 anos')"><span class="opt-dot"></span><span class="opt-label">Mais de 2 anos</span><input type="radio" name="exp" value="Mais de 2 anos"></div>
       </div>
-      <span class="err-msg" id="err-exp">Selecione uma opção.</span>
+      <span class="err-msg" id="err-exp" style="display:none">Selecione uma opção.</span>
     </div>
     <div class="field">
-      <label class="field-label">Plataformas onde já trabalhou com entregas <span style="color:var(--mu);font-weight:400">(opcional)</span></label>
+      <label class="field-label">Plataformas onde já trabalhou <span style="color:var(--mu);font-weight:400">(opcional)</span></label>
       <div class="options" style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-        <div class="opt-item" onclick="togCheck(this,'plat','meli')"><span class="opt-check"></span><span class="opt-label">Mercado Livre</span><input type="checkbox" name="plat" value="meli"></div>
-        <div class="opt-item" onclick="togCheck(this,'plat','amazon')"><span class="opt-check"></span><span class="opt-label">Amazon</span><input type="checkbox" name="plat" value="amazon"></div>
-        <div class="opt-item" onclick="togCheck(this,'plat','ifood')"><span class="opt-check"></span><span class="opt-label">iFood</span><input type="checkbox" name="plat" value="ifood"></div>
-        <div class="opt-item" onclick="togCheck(this,'plat','correios')"><span class="opt-check"></span><span class="opt-label">Correios</span><input type="checkbox" name="plat" value="correios"></div>
-        <div class="opt-item" onclick="togCheck(this,'plat','jadlog')"><span class="opt-check"></span><span class="opt-label">Jadlog</span><input type="checkbox" name="plat" value="jadlog"></div>
-        <div class="opt-item" onclick="togCheck(this,'plat','outros')"><span class="opt-check"></span><span class="opt-label">Outros</span><input type="checkbox" name="plat" value="outros"></div>
+        <div class="opt-item" onclick="togCheck(this,'plat','Mercado Livre')"><span class="opt-check"></span><span class="opt-label">Mercado Livre</span><input type="checkbox" name="plat" value="Mercado Livre"></div>
+        <div class="opt-item" onclick="togCheck(this,'plat','Amazon')"><span class="opt-check"></span><span class="opt-label">Amazon</span><input type="checkbox" name="plat" value="Amazon"></div>
+        <div class="opt-item" onclick="togCheck(this,'plat','iFood')"><span class="opt-check"></span><span class="opt-label">iFood</span><input type="checkbox" name="plat" value="iFood"></div>
+        <div class="opt-item" onclick="togCheck(this,'plat','Correios')"><span class="opt-check"></span><span class="opt-label">Correios</span><input type="checkbox" name="plat" value="Correios"></div>
+        <div class="opt-item" onclick="togCheck(this,'plat','Jadlog')"><span class="opt-check"></span><span class="opt-label">Jadlog</span><input type="checkbox" name="plat" value="Jadlog"></div>
+        <div class="opt-item" onclick="togCheck(this,'plat','Outros')"><span class="opt-check"></span><span class="opt-label">Outros</span><input type="checkbox" name="plat" value="Outros"></div>
       </div>
     </div>
     <div class="field" id="f-media">
       <label class="field-label">Média de entregas por dia <span class="req">*</span></label>
       <div class="options">
-        <div class="opt-item" onclick="selOpt(this,'media','ate30')"><span class="opt-dot"></span><span class="opt-label">Até 30 entregas</span><input type="radio" name="media" value="ate30"></div>
-        <div class="opt-item" onclick="selOpt(this,'media','31a60')"><span class="opt-dot"></span><span class="opt-label">31 a 60 entregas</span><input type="radio" name="media" value="31a60"></div>
-        <div class="opt-item" onclick="selOpt(this,'media','61a90')"><span class="opt-dot"></span><span class="opt-label">61 a 90 entregas ⭐</span><input type="radio" name="media" value="61a90"></div>
-        <div class="opt-item" onclick="selOpt(this,'media','mais90')"><span class="opt-dot"></span><span class="opt-label">Mais de 90 entregas ⭐</span><input type="radio" name="media" value="mais90"></div>
+        <div class="opt-item" onclick="selOpt(this,'media','Até 30')"><span class="opt-dot"></span><span class="opt-label">Até 30 entregas</span><input type="radio" name="media" value="Até 30"></div>
+        <div class="opt-item" onclick="selOpt(this,'media','31 a 60')"><span class="opt-dot"></span><span class="opt-label">31 a 60 entregas</span><input type="radio" name="media" value="31 a 60"></div>
+        <div class="opt-item" onclick="selOpt(this,'media','61 a 90 ⭐')"><span class="opt-dot"></span><span class="opt-label">61 a 90 entregas ⭐</span><input type="radio" name="media" value="61 a 90 ⭐"></div>
+        <div class="opt-item" onclick="selOpt(this,'media','Mais de 90 ⭐')"><span class="opt-dot"></span><span class="opt-label">Mais de 90 entregas ⭐</span><input type="radio" name="media" value="Mais de 90 ⭐"></div>
       </div>
-      <span class="err-msg" id="err-media">Selecione uma opção.</span>
+      <span class="err-msg" id="err-media" style="display:none">Selecione uma opção.</span>
     </div>
     <div class="field">
-      <label class="field-label">Usa aplicativo de roteirização? <span style="color:var(--mu);font-weight:400">(opcional)</span></label>
+      <label class="field-label">Usa roteirização? <span style="color:var(--mu);font-weight:400">(opcional)</span></label>
       <div class="options">
-        <div class="opt-item" onclick="selOpt(this,'rota','sim')"><span class="opt-dot"></span><span class="opt-label">Sim, uso regularmente</span><input type="radio" name="rota" value="sim"></div>
-        <div class="opt-item" onclick="selOpt(this,'rota','eventual')"><span class="opt-dot"></span><span class="opt-label">Sim, eventualmente</span><input type="radio" name="rota" value="eventual"></div>
-        <div class="opt-item" onclick="selOpt(this,'rota','nao')"><span class="opt-dot"></span><span class="opt-label">Não uso</span><input type="radio" name="rota" value="nao"></div>
+        <div class="opt-item" onclick="selOpt(this,'rota','Sim, regularmente')"><span class="opt-dot"></span><span class="opt-label">Sim, regularmente</span><input type="radio" name="rota" value="Sim, regularmente"></div>
+        <div class="opt-item" onclick="selOpt(this,'rota','Eventualmente')"><span class="opt-dot"></span><span class="opt-label">Eventualmente</span><input type="radio" name="rota" value="Eventualmente"></div>
+        <div class="opt-item" onclick="selOpt(this,'rota','Não uso')"><span class="opt-dot"></span><span class="opt-label">Não uso</span><input type="radio" name="rota" value="Não uso"></div>
       </div>
     </div>
     <div class="field" id="f-disp">
       <label class="field-label">Disponibilidade para início <span class="req">*</span></label>
       <div class="options">
-        <div class="opt-item" onclick="selOpt(this,'disp','imediata')"><span class="opt-dot"></span><span class="opt-label">Imediata — posso começar esta semana</span><input type="radio" name="disp" value="imediata"></div>
-        <div class="opt-item" onclick="selOpt(this,'disp','15dias')"><span class="opt-dot"></span><span class="opt-label">Em até 15 dias</span><input type="radio" name="disp" value="15dias"></div>
-        <div class="opt-item" onclick="selOpt(this,'disp','30dias')"><span class="opt-dot"></span><span class="opt-label">Em até 30 dias</span><input type="radio" name="disp" value="30dias"></div>
+        <div class="opt-item" onclick="selOpt(this,'disp','Imediata')"><span class="opt-dot"></span><span class="opt-label">Imediata — posso começar esta semana</span><input type="radio" name="disp" value="Imediata"></div>
+        <div class="opt-item" onclick="selOpt(this,'disp','Até 15 dias')"><span class="opt-dot"></span><span class="opt-label">Até 15 dias</span><input type="radio" name="disp" value="Até 15 dias"></div>
+        <div class="opt-item" onclick="selOpt(this,'disp','Até 30 dias')"><span class="opt-dot"></span><span class="opt-label">Até 30 dias</span><input type="radio" name="disp" value="Até 30 dias"></div>
       </div>
-      <span class="err-msg" id="err-disp">Selecione uma opção.</span>
+      <span class="err-msg" id="err-disp" style="display:none">Selecione uma opção.</span>
     </div>
     <div class="field">
       <label class="field-label">Informações adicionais <span style="color:var(--mu);font-weight:400">(opcional)</span></label>
-      <textarea id="obs" placeholder="Equipamentos extras, experiências específicas, referências..."></textarea>
+      <textarea id="obs" placeholder="Equipamentos extras, referências, observações..."></textarea>
     </div>
     <div class="nav-row">
       <button class="btn-back" onclick="back(4)">← Voltar</button>
@@ -384,22 +408,21 @@ textarea{resize:vertical;min-height:90px;line-height:1.6}
     </div>
   </div>
 
-  <!-- SEÇÃO 5 — REVISÃO -->
+  <!-- SEC 5 -->
   <div class="section" id="sec-5">
     <div class="section-header">
       <div class="section-pill">05 / 05</div>
       <h2 class="section-title">Confirme seus dados</h2>
-      <p class="section-desc">Revise as informações antes de enviar o cadastro.</p>
+      <p class="section-desc">Revise antes de enviar o cadastro.</p>
     </div>
     <div id="review-box"></div>
     <div class="confirm-box">
       <input type="checkbox" id="conf-check">
-      <label class="confirm-label" for="conf-check">Confirmo que todas as informações acima são <strong>verdadeiras e corretas</strong>. Estou ciente de que dados falsos podem invalidar meu cadastro.</label>
+      <label class="confirm-label" for="conf-check">Confirmo que todas as informações são <strong>verdadeiras e corretas</strong>.</label>
     </div>
     <button class="btn-submit" onclick="submit()">✅ Enviar cadastro</button>
     <div class="nav-row" style="border-top:none;padding-top:0;margin-top:8px">
-      <button class="btn-back" onclick="back(5)">← Voltar e editar</button>
-      <span></span>
+      <button class="btn-back" onclick="back(5)">← Voltar e editar</button><span></span>
     </div>
   </div>
 
@@ -407,35 +430,108 @@ textarea{resize:vertical;min-height:90px;line-height:1.6}
   <div class="success" id="success">
     <div class="success-icon">🎉</div>
     <h2 class="success-title">Cadastro enviado!</h2>
-    <p class="success-sub">Obrigado, <span class="success-name" id="suc-nome"></span>! Nossa equipe vai analisar seu perfil e entrar em contato em até <strong>48h úteis pelo WhatsApp</strong>. Fique de olho nas mensagens! 🚚</p>
+    <p class="success-sub">Obrigado, <strong id="suc-nome"></strong>! Nossa equipe analisa seu perfil e entra em contato em até <strong>48h úteis pelo WhatsApp</strong>. Fique de olho! 🚚</p>
   </div>
 
-  <!-- REPROVADO POR CIDADE/DOCS -->
+  <!-- REPROVADO GERAL -->
   <div class="rejection" id="rej-geral">
     <div class="rejection-icon">🙏</div>
     <h2 class="rejection-title">Agradecemos seu interesse!</h2>
     <p class="rejection-sub">Infelizmente seu perfil não atende aos requisitos atuais da operação Kangu.</p>
-    <div class="rejection-future">Assim que os requisitos forem atendidos, fique à vontade para se candidatar novamente. Boa sorte na estrada! 🚗</div>
+    <div class="rejection-future">Assim que os requisitos forem atendidos, fique à vontade para se candidatar novamente. Boa sorte! 🚗</div>
   </div>
 
-  <!-- REPROVADO POR EXPERIÊNCIA -->
+  <!-- REPROVADO EXP -->
   <div class="rejection" id="rej-exp">
     <div class="rejection-icon">⏳</div>
     <h2 class="rejection-title">Obrigado pela disposição!</h2>
-    <p class="rejection-sub">No momento buscamos motoristas com pelo menos <strong>6 meses de experiência</strong> em entregas porta a porta.</p>
-    <div class="rejection-future">Guardamos seu contato no banco de talentos! Ao completar esse tempo de estrada, entre em contato novamente — será um prazer avaliar seu perfil! 💪🚗</div>
+    <p class="rejection-sub">Buscamos motoristas com pelo menos <strong>6 meses de experiência</strong> em entregas porta a porta.</p>
+    <div class="rejection-future">Guardamos seu contato! Ao completar esse tempo, entre em contato novamente. 💪🚗</div>
   </div>
 
+</div><!-- /main -->
+
+<!-- HINT -->
+<div class="ps-hint">Painel admin: <span>Ctrl+Shift+G</span></div>
+
+<!-- ===== PAINEL SECRETO ===== -->
+<div id="painel-secreto">
+  <div class="ps-header">
+    <div class="ps-title">
+      🔐 Painel Admin Kangu
+      <span class="ps-badge" id="ps-total-badge">0 leads</span>
+    </div>
+    <div class="ps-actions">
+      <input class="ps-search" type="text" id="ps-search" placeholder="Buscar por nome, cidade, veículo..." oninput="psRender()">
+      <button class="ps-btn ps-btn-csv" onclick="psExportCSV()">⬇ Baixar CSV</button>
+      <button class="ps-btn ps-btn-clear" onclick="psClear()">🗑 Limpar tudo</button>
+      <button class="ps-btn ps-btn-close" onclick="closePS()">✕ Fechar</button>
+    </div>
+  </div>
+
+  <div class="ps-stats" id="ps-stats"></div>
+
+  <div class="ps-filters">
+    <button class="ps-filter active" id="psf-todos" onclick="psFilter('todos',this)">Todos</button>
+    <button class="ps-filter" id="psf-Novo" onclick="psFilter('Novo',this)">🟢 Novos</button>
+    <button class="ps-filter" id="psf-Analisado" onclick="psFilter('Analisado',this)">🔵 Analisados</button>
+    <button class="ps-filter" id="psf-Aprovado" onclick="psFilter('Aprovado',this)">⭐ Aprovados</button>
+    <button class="ps-filter" id="psf-Reprovado" onclick="psFilter('Reprovado',this)">❌ Reprovados</button>
+  </div>
+
+  <div class="ps-table-wrap">
+    <table class="ps-table">
+      <thead>
+        <tr>
+          <th onclick="psSort('data')">#  Data ↕</th>
+          <th onclick="psSort('nome')">Nome ↕</th>
+          <th>WhatsApp</th>
+          <th onclick="psSort('cidade')">Cidade ↕</th>
+          <th>Modal</th>
+          <th>Veículo / Ano</th>
+          <th>EAR</th>
+          <th>MEI</th>
+          <th>ANTT</th>
+          <th onclick="psSort('exp')">Experiência ↕</th>
+          <th onclick="psSort('media')">Entregas/dia ↕</th>
+          <th>Disponib.</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="ps-tbody"></tbody>
+    </table>
+    <div class="ps-empty" id="ps-empty" style="display:none">Nenhum lead encontrado.</div>
+  </div>
+
+  <div class="ps-footer">
+    <span id="ps-count-label">Mostrando 0 de 0 leads</span>
+    <span>Kangu Mercado Envios · Painel Admin · Dados salvos localmente</span>
+  </div>
 </div>
 
 <script>
+// ======= ESTADO =======
 let cur=1;
-const data={};
+let psActive=false;
+let psCurFilter='todos';
+let psSortField='data';
+let psSortAsc=false;
+let leads=[];
 
-// MASKS
+// Carrega leads do localStorage
+function loadLeads(){
+  try{ leads=JSON.parse(localStorage.getItem('kangu_leads')||'[]'); }
+  catch(e){ leads=[]; }
+}
+function saveLeads(){
+  localStorage.setItem('kangu_leads', JSON.stringify(leads));
+}
+loadLeads();
+
+// ======= FORMULÁRIO =======
 document.getElementById('tel').oninput=function(){
   let v=this.value.replace(/\D/g,'');
-  if(v.length<=10)v=v.replace(/^(\d{2})(\d)/,'($1) $2').replace(/(\d{4})(\d)/,'$1-$2');
+  if(v.length<=10) v=v.replace(/^(\d{2})(\d)/,'($1) $2').replace(/(\d{4})(\d)/,'$1-$2');
   else v=v.replace(/^(\d{2})(\d)/,'($1) $2').replace(/(\d{5})(\d)/,'$1-$2');
   this.value=v;
 };
@@ -452,79 +548,70 @@ function selOpt(el,name,val){
   document.querySelectorAll(`input[name="${name}"]`).forEach(i=>{i.closest('.opt-item').classList.remove('selected')});
   el.classList.add('selected');
   el.querySelector('input').checked=true;
-  data[name]=val;
 }
-function togCheck(el,name,val){
+function togCheck(el){
   el.classList.toggle('selected');
   el.querySelector('input').checked=el.classList.contains('selected');
-  if(!data[name])data[name]=[];
-  if(el.classList.contains('selected')){if(!data[name].includes(val))data[name].push(val);}
-  else{data[name]=data[name].filter(v=>v!==val);}
 }
 
 function gv(id){return(document.getElementById(id)||{}).value||'';}
 function gr(name){const el=document.querySelector(`input[name="${name}"]:checked`);return el?el.value:'';}
+function gcb(name){return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(e=>e.value).join(', ');}
 
-function showErr(fieldId,show){
-  const f=document.getElementById('f-'+fieldId)||document.getElementById(fieldId);
+function showErr(fid,show){
+  const f=document.getElementById('f-'+fid)||document.getElementById(fid);
   if(!f)return;
-  if(show){f.classList.add('field-error');}else{f.classList.remove('field-error');}
+  f.classList.toggle('field-error',show);
+}
+function showErrMsg(id,show){
+  const el=document.getElementById(id);
+  if(el)el.style.display=show?'block':'none';
 }
 
 function validate(step){
   let ok=true;
   if(step===1){
-    if(!gv('nome').trim()){showErr('nome',1);ok=false;}else{showErr('nome',0);}
-    if(!gv('tel').trim()||gv('tel').length<14){showErr('tel',1);ok=false;}else{showErr('tel',0);}
-    if(!gv('cpf').trim()||gv('cpf').length<14){showErr('cpf',1);ok=false;}else{showErr('cpf',0);}
-    if(!gr('cidade')){document.getElementById('err-cidade').style.display='block';ok=false;}else{document.getElementById('err-cidade').style.display='none';}
+    const n=!gv('nome').trim(); showErr('nome',n); if(n)ok=false;
+    const t=!gv('tel').trim()||gv('tel').length<14; showErr('tel',t); if(t)ok=false;
+    const c=!gv('cpf').trim()||gv('cpf').length<14; showErr('cpf',c); if(c)ok=false;
+    const ci=!gr('cidade'); showErrMsg('err-cidade',ci); if(ci)ok=false;
   }
   if(step===2){
-    if(!gr('modal')){document.getElementById('err-modal').style.display='block';ok=false;}else{document.getElementById('err-modal').style.display='none';}
-    if(!gv('marca').trim()){showErr('marca',1);ok=false;}else{showErr('marca',0);}
-    if(!gv('ano')){document.getElementById('err-ano').style.display='block';ok=false;}else{document.getElementById('err-ano').style.display='none';}
-    if(!gv('placa').trim()){showErr('placa',1);ok=false;}else{showErr('placa',0);}
-    if(!gr('placa_verm')){document.getElementById('err-placa-verm').style.display='block';ok=false;}else{document.getElementById('err-placa-verm').style.display='none';}
-    if(!gr('capota')){document.getElementById('err-capota').style.display='block';ok=false;}else{document.getElementById('err-capota').style.display='none';}
+    const m=!gr('modal'); showErrMsg('err-modal',m); if(m)ok=false;
+    const ma=!gv('marca').trim(); showErr('marca',ma); if(ma)ok=false;
+    const an=!gv('ano'); showErrMsg('err-ano',an); if(an)ok=false;
+    const pl=!gv('placa').trim(); showErr('placa',pl); if(pl)ok=false;
+    const pv=!gr('placa_verm'); showErrMsg('err-placa-verm',pv); if(pv)ok=false;
+    const cp=!gr('capota'); showErrMsg('err-capota',cp); if(cp)ok=false;
   }
   if(step===3){
-    if(!gr('ear')){document.getElementById('err-ear').style.display='block';ok=false;}else{document.getElementById('err-ear').style.display='none';}
-    if(!gv('cnh_val')){showErr('cnh-val',1);ok=false;}else{showErr('cnh-val',0);}
-    if(!gr('mei')){document.getElementById('err-mei').style.display='block';ok=false;}else{document.getElementById('err-mei').style.display='none';}
-    if(!gr('antt')){document.getElementById('err-antt').style.display='block';ok=false;}else{document.getElementById('err-antt').style.display='none';}
+    const e=!gr('ear'); showErrMsg('err-ear',e); if(e)ok=false;
+    const cv=!gv('cnh_val'); showErr('cnh-val',cv); if(cv)ok=false;
+    const me=!gr('mei'); showErrMsg('err-mei',me); if(me)ok=false;
+    const an=!gr('antt'); showErrMsg('err-antt',an); if(an)ok=false;
   }
   if(step===4){
-    if(!gr('exp')){document.getElementById('err-exp').style.display='block';ok=false;}else{document.getElementById('err-exp').style.display='none';}
-    if(!gr('media')){document.getElementById('err-media').style.display='block';ok=false;}else{document.getElementById('err-media').style.display='none';}
-    if(!gr('disp')){document.getElementById('err-disp').style.display='block';ok=false;}else{document.getElementById('err-disp').style.display='none';}
+    const ex=!gr('exp'); showErrMsg('err-exp',ex); if(ex)ok=false;
+    const md=!gr('media'); showErrMsg('err-media',md); if(md)ok=false;
+    const di=!gr('disp'); showErrMsg('err-disp',di); if(di)ok=false;
   }
   return ok;
 }
 
 function checkElim(step){
-  if(step===1){
-    if(gr('cidade')==='_fora'){showPanel('rej-geral');return true;}
-  }
+  if(step===1 && gr('cidade')==='_fora'){showPanel('rej-geral');return true;}
   if(step===2){
-    if(gr('modal')==='_outro'){showPanel('rej-geral');return true;}
-    if(gv('ano')==='_antigo'){showPanel('rej-geral');return true;}
-    if(gr('placa_verm')==='_nao'){showPanel('rej-geral');return true;}
-    if(gr('capota')==='_nao'){showPanel('rej-geral');return true;}
+    if(gr('modal')==='_outro'||gv('ano')==='_antigo'||gr('placa_verm')==='_nao'||gr('capota')==='_nao'){showPanel('rej-geral');return true;}
   }
-  if(step===3){
-    if(gr('ear')==='_nao'){showPanel('rej-geral');return true;}
-    if(gr('mei')==='_nao'){showPanel('rej-geral');return true;}
-  }
-  if(step===4){
-    if(gr('exp')==='_menos6'){showPanel('rej-exp');return true;}
-  }
+  if(step===3 && (gr('ear')==='_nao'||gr('mei')==='_nao')){showPanel('rej-geral');return true;}
+  if(step===4 && gr('exp')==='_menos6'){showPanel('rej-exp');return true;}
   return false;
 }
 
 function showPanel(id){
-  document.querySelectorAll('.section,.success,.rejection').forEach(e=>e.style.display='none');
+  document.querySelectorAll('.section,.success,.rejection').forEach(e=>{e.style.display='none'});
   document.getElementById(id).style.display='block';
-  document.querySelector('.progress-wrap').style.display='none';
+  document.getElementById('prog-wrap').style.display='none';
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -535,71 +622,214 @@ function next(step){
   if(cur===5)buildReview();
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.getElementById('sec-'+cur).classList.add('active');
-  updateProgress(cur);
+  updateProg(cur);
   window.scrollTo({top:0,behavior:'smooth'});
 }
-
 function back(step){
   cur=step-1;
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.getElementById('sec-'+cur).classList.add('active');
-  updateProgress(cur);
+  updateProg(cur);
   window.scrollTo({top:0,behavior:'smooth'});
 }
-
-function updateProgress(step){
+function updateProg(step){
   const pct=[0,20,40,60,80,100];
   document.getElementById('prog-fill').style.width=pct[step]+'%';
   for(let i=1;i<=5;i++){
-    const el=document.getElementById('pl-'+i);
-    el.classList.toggle('active',i===step);
+    document.getElementById('pl-'+i).classList.toggle('active',i===step);
   }
 }
 
 function buildReview(){
-  const labels={
-    'Piracicaba':'Piracicaba','Rio das Pedras':'Rio das Pedras','Saltinho':'Saltinho',
-    'Cerquilho':'Cerquilho','Tietê':'Tietê','Laranjal Paulista':'Laranjal Paulista','Laras':'Laras',
-    'Utilitário':'Utilitário','Van':'Van','VUC':'VUC',
-    'sim':'Sim ✅','instalar':'Pretendo instalar',
-    'ativo':'Ativo ✅','ajustar':'Precisa ajustar CNAE','abrir':'Pretendo abrir','regularizar':'Vou regularizar','nao':'Não tenho',
-    'nsei':'Não sei verificar',
-    '6a12':'6 a 12 meses','1a2':'1 a 2 anos','mais2':'Mais de 2 anos',
-    'ate30':'Até 30','31a60':'31 a 60','61a90':'61 a 90 ⭐','mais90':'Mais de 90 ⭐',
-    'imediata':'Imediata','15dias':'Até 15 dias','30dias':'Até 30 dias',
-    'eventual':'Eventualmente'
-  };
-  const L=v=>labels[v]||v||'—';
-  const rows=[
+  const sections=[
     ['Dados pessoais',[
-      ['Nome',gv('nome')],['WhatsApp',gv('tel')],['CPF',gv('cpf')],['Cidade',L(gr('cidade'))],['E-mail',gv('email')||'—']
+      ['Nome',gv('nome')],['WhatsApp',gv('tel')],['CPF',gv('cpf')],
+      ['Cidade',gr('cidade')],['E-mail',gv('email')||'—']
     ]],
     ['Veículo',[
-      ['Modal',L(gr('modal'))],['Marca/Modelo',gv('marca')],['Ano',gv('ano')],['Placa',gv('placa')],
-      ['Placa vermelha',L(gr('placa_verm'))],['Capota de fibra',L(gr('capota'))]
+      ['Modal',gr('modal')],['Marca/Modelo',gv('marca')],['Ano',gv('ano')],
+      ['Placa',gv('placa')],['Placa vermelha',gr('placa_verm')],['Capota fibra',gr('capota')]
     ]],
     ['Documentação',[
-      ['CNH EAR',L(gr('ear'))],['Validade CNH',gv('cnh_val')],['MEI',L(gr('mei'))],['ANTT',L(gr('antt'))]
+      ['CNH EAR',gr('ear')],['Validade CNH',gv('cnh_val')],
+      ['MEI',gr('mei')],['ANTT',gr('antt')]
     ]],
     ['Experiência',[
-      ['Tempo de experiência',L(gr('exp'))],['Entregas/dia',L(gr('media'))],['Disponibilidade',L(gr('disp'))]
+      ['Experiência',gr('exp')],['Entregas/dia',gr('media')],['Disponibilidade',gr('disp')]
     ]]
   ];
-  document.getElementById('review-box').innerHTML=rows.map(([sec,fields])=>`
+  document.getElementById('review-box').innerHTML=sections.map(([sec,fields])=>`
     <div class="review-section">
       <div class="review-section-title">${sec}</div>
-      ${fields.map(([k,v])=>`<div class="review-row"><span class="review-key">${k}</span><span class="review-val">${v}</span></div>`).join('')}
+      ${fields.map(([k,v])=>`<div class="review-row"><span class="review-key">${k}</span><span class="review-val">${v||'—'}</span></div>`).join('')}
     </div>`).join('');
 }
 
 function submit(){
   if(!document.getElementById('conf-check').checked){
-    alert('Por favor confirme que as informações são verdadeiras para continuar.');
+    alert('Confirme que as informações são verdadeiras para continuar.');
     return;
   }
-  const nome=gv('nome').split(' ')[0];
-  document.getElementById('suc-nome').textContent=nome;
+  const lead={
+    id: Date.now(),
+    data: new Date().toLocaleString('pt-BR'),
+    nome: gv('nome'),
+    tel: gv('tel'),
+    cpf: gv('cpf'),
+    email: gv('email'),
+    cidade: gr('cidade'),
+    modal: gr('modal'),
+    marca: gv('marca'),
+    ano: gv('ano'),
+    placa: gv('placa'),
+    placa_verm: gr('placa_verm'),
+    capota: gr('capota'),
+    ear: gr('ear'),
+    cnh_val: gv('cnh_val'),
+    mei: gr('mei'),
+    antt: gr('antt'),
+    exp: gr('exp'),
+    plataformas: gcb('plat'),
+    media: gr('media'),
+    rota: gr('rota'),
+    disp: gr('disp'),
+    obs: gv('obs'),
+    status: 'Novo'
+  };
+  loadLeads();
+  leads.unshift(lead);
+  saveLeads();
+  document.getElementById('suc-nome').textContent=lead.nome.split(' ')[0];
   showPanel('success');
+}
+
+// ======= PAINEL SECRETO =======
+document.addEventListener('keydown',function(e){
+  if(e.ctrlKey && e.shiftKey && e.key==='G'){
+    e.preventDefault();
+    openPS();
+  }
+});
+
+function openPS(){
+  loadLeads();
+  psActive=true;
+  document.getElementById('painel-secreto').style.display='block';
+  psRender();
+}
+function closePS(){
+  psActive=false;
+  document.getElementById('painel-secreto').style.display='none';
+}
+
+function psFilter(f,el){
+  psCurFilter=f;
+  document.querySelectorAll('.ps-filter').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  psRender();
+}
+
+function psSort(field){
+  if(psSortField===field) psSortAsc=!psSortAsc;
+  else{ psSortField=field; psSortAsc=true; }
+  psRender();
+}
+
+function psRender(){
+  loadLeads();
+  const search=(document.getElementById('ps-search').value||'').toLowerCase();
+  let data=[...leads];
+
+  if(psCurFilter!=='todos') data=data.filter(l=>l.status===psCurFilter);
+  if(search) data=data.filter(l=>(l.nome+l.cidade+l.tel+l.marca+l.modal).toLowerCase().includes(search));
+
+  // sort
+  data.sort((a,b)=>{
+    const va=a[psSortField]||'', vb=b[psSortField]||'';
+    const r=va>vb?1:va<vb?-1:0;
+    return psSortAsc?r:-r;
+  });
+
+  const tbody=document.getElementById('ps-tbody');
+  const empty=document.getElementById('ps-empty');
+
+  if(!data.length){
+    tbody.innerHTML='';
+    empty.style.display='block';
+  } else {
+    empty.style.display='none';
+    tbody.innerHTML=data.map((l,i)=>`
+      <tr>
+        <td style="color:#555">${i+1} · ${l.data}</td>
+        <td style="color:#fff;font-weight:600">${l.nome}</td>
+        <td><a href="https://wa.me/55${l.tel.replace(/\D/g,'')}" target="_blank" style="color:#22C55E;text-decoration:none">${l.tel}</a></td>
+        <td>${l.cidade}</td>
+        <td style="color:var(--y)">${l.modal}</td>
+        <td>${l.marca} ${l.ano}</td>
+        <td>${l.ear}</td>
+        <td style="font-size:10px">${l.mei}</td>
+        <td>${l.antt}</td>
+        <td>${l.exp}</td>
+        <td>${l.media}</td>
+        <td>${l.disp}</td>
+        <td>
+          <select class="ps-sel" onchange="psChangeStatus(${l.id},this.value)">
+            <option ${l.status==='Novo'?'selected':''}>Novo</option>
+            <option ${l.status==='Analisado'?'selected':''}>Analisado</option>
+            <option ${l.status==='Aprovado'?'selected':''}>Aprovado</option>
+            <option ${l.status==='Reprovado'?'selected':''}>Reprovado</option>
+          </select>
+        </td>
+      </tr>`).join('');
+  }
+
+  // stats
+  const total=leads.length;
+  const novos=leads.filter(l=>l.status==='Novo').length;
+  const aprov=leads.filter(l=>l.status==='Aprovado').length;
+  const repr=leads.filter(l=>l.status==='Reprovado').length;
+  document.getElementById('ps-stats').innerHTML=`
+    <div class="ps-stat"><div class="ps-stat-n yellow">${total}</div><div class="ps-stat-l">TOTAL DE LEADS</div></div>
+    <div class="ps-stat"><div class="ps-stat-n">${novos}</div><div class="ps-stat-l">NOVOS</div></div>
+    <div class="ps-stat"><div class="ps-stat-n green">${aprov}</div><div class="ps-stat-l">APROVADOS</div></div>
+    <div class="ps-stat"><div class="ps-stat-n red">${repr}</div><div class="ps-stat-l">REPROVADOS</div></div>`;
+  document.getElementById('ps-total-badge').textContent=total+' leads';
+  document.getElementById('ps-count-label').textContent=`Mostrando ${data.length} de ${total} leads`;
+}
+
+function psChangeStatus(id,status){
+  loadLeads();
+  leads=leads.map(l=>l.id===id?{...l,status}:l);
+  saveLeads();
+  psRender();
+}
+
+function psExportCSV(){
+  loadLeads();
+  let data=[...leads];
+  if(psCurFilter!=='todos') data=data.filter(l=>l.status===psCurFilter);
+
+  const headers=['Data','Nome','WhatsApp','CPF','Email','Cidade','Modal','Veiculo','Ano','Placa','Placa Vermelha','Capota','EAR','Validade CNH','MEI','ANTT','Experiencia','Plataformas','Entregas Dia','Roteirizacao','Disponibilidade','Observacoes','Status'];
+  const rows=data.map(l=>[
+    l.data,l.nome,l.tel,l.cpf,l.email,l.cidade,l.modal,l.marca,l.ano,l.placa,
+    l.placa_verm,l.capota,l.ear,l.cnh_val,l.mei,l.antt,l.exp,l.plataformas,
+    l.media,l.rota,l.disp,l.obs,l.status
+  ].map(v=>'"'+(v||'').replace(/"/g,'""')+'"').join(','));
+
+  const csv='\uFEFF'+[headers.join(','),...rows].join('\n');
+  const a=document.createElement('a');
+  const hoje=new Date().toLocaleDateString('pt-BR').replace(/\//g,'-');
+  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+  a.download=`leads_kangu_${hoje}.csv`;
+  a.click();
+}
+
+function psClear(){
+  if(confirm('⚠️ Apagar TODOS os leads salvos? Esta ação não pode ser desfeita.')){
+    leads=[];
+    saveLeads();
+    psRender();
+  }
 }
 </script>
 </body>
